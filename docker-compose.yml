@@ -163,40 +163,16 @@ services:
       zookeeper: {condition: service_healthy}
     networks: [backend]
 
-  # 🧪 Pytest Runner
-  tests:
-    build:
-      context: .
-      target: dev
-    command: bash -c "ENV=test pytest -q --cov=app --cov-branch"
-    volumes:
-      - .:/app
-    working_dir: /app
-    environment:
-      PYTHONDONTWRITEBYTECODE: 1
-      PYTHONUNBUFFERED: 1
-
-  # 🧹 Flake8 Linter
-  lint:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: dev
-    container_name: django_lint
-    volumes:
-      - .:/app:cached
-    command: flake8 .
-
-  # 🪢 Pre-commit Hooks
-  pre-commit:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: dev
-    container_name: django_precommit
-    volumes:
-      - .:/app:cached
-    entrypoint: ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
+  # # 🪢 Pre-commit Hooks
+  # pre-commit:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: dev
+  #   container_name: django_precommit
+  #   volumes:
+  #     - .:/app:cached
+  #   entrypoint: ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
 
   # 📊 Redis Exporter
   redis_exporter:

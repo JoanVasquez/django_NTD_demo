@@ -76,8 +76,6 @@ docker-compose logs -f web
 # Run migrations
 docker-compose exec web python manage.py migrate
 
-# Create superuser (optional)
-docker-compose exec web python manage.py createsuperuser
 ```
 
 ## 🌐 Service Endpoints
@@ -107,10 +105,11 @@ docker-compose exec web python manage.py createsuperuser
 
 ### Run All Tests
 ```bash
-# Using Docker
-docker-compose run --rm tests
 
-# Local development
+# Local testing
+pip install -r requirements.txt
+pip install -r requirements.dev.txt
+
 pytest --cov=app --cov-branch
 ```
 
@@ -124,37 +123,6 @@ pytest e2e_tests/
 
 # With coverage report
 pytest --cov=app --cov-report=html
-```
-
-## 🔧 Development
-
-### Local Development Setup
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.dev.txt
-
-# Set environment variables
-export ENV=dev
-export DEBUG=True
-
-# Run migrations
-python manage.py migrate
-
-# Start development server
-python manage.py runserver
-```
-
-### Code Quality
-```bash
-# Run linting
-docker-compose run --rm lint
-
-# Run pre-commit hooks
-docker-compose run --rm pre-commit
 ```
 
 ## 📊 Monitoring & Observability
@@ -197,7 +165,7 @@ The application uses Kafka for event-driven architecture:
 
 ### Environment Variables
 Key environment variables (see `.env.example`):
-
+- `DJANGO_SETTINGS_MODULE`: Django app setting
 - `SECRET_KEY`: Django secret key
 - `DEBUG`: Debug mode (True/False)
 - `POSTGRES_*`: Database configuration
@@ -232,19 +200,3 @@ docker-compose restart [service-name]
 docker-compose down -v
 docker system prune -f
 ```
-
-## 📝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Support
-
-For questions and support, please open an issue in the repository.
