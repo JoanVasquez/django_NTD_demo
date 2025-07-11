@@ -1,0 +1,20 @@
+# 🧪──────────────────────────────
+# 🧪 Testing
+# 🧪──────────────────────────────
+pytest                           # 🧪 Core testing framework
+pytest-django                    # 🌿 Django integration for pytest
+pytest-cov                       # 📊 Coverage reporting
+pytest-mock                      # 🎭 Mocking utilities for pytest
+
+# 🧹──────────────────────────────
+# 🧹 Linting & Formatting
+# 🧹──────────────────────────────
+flake8>=4.0,<6.0                 # 🧹 Linter for Python code
+black>=24.0,<25.0                # 🎨 Code formatter
+isort>=5.0,<6.0                  # 🪄 Import sorting
+pre-commit>=3.0,<4.0             # 🪢 Git hooks for enforcing checks
+
+# 🧩──────────────────────────────
+# 🩹 Compatibility
+# 🧩──────────────────────────────
+importlib-metadata<5.0           # 🧩 Backport for older Python environments

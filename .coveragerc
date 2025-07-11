@@ -1,0 +1,17 @@
+[run]
+branch = True
+source =
+    .
+
+omit =
+    */migrations/*
+    */tests/*
+    */__init__.py
+    app/asgi.py
+    app/wsgi.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    pass  # noqa
