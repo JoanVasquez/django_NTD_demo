@@ -163,17 +163,6 @@ services:
       zookeeper: {condition: service_healthy}
     networks: [backend]
 
-  # # 🪢 Pre-commit Hooks
-  # pre-commit:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: dev
-  #   container_name: django_precommit
-  #   volumes:
-  #     - .:/app:cached
-  #   entrypoint: ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
-
   # 📊 Redis Exporter
   redis_exporter:
     image: oliver006/redis_exporter:latest
