@@ -10,6 +10,8 @@ if [ "$RUN_MIGRATIONS" = "1" ]; then
   python manage.py migrate --noinput
 fi
 
+# python -m analytics.consumer
+
 # ——————————————————————————
 #  One-off fetch of planets (via Celery)…
 # ——————————————————————————

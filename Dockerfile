@@ -12,7 +12,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 # 🛠️ System packages for wheel builds
 RUN apt-get update \
- && apt-get install -y --no-install-recommends gcc build-essential \
+ && apt-get install -y --no-install-recommends gcc build-essential dos2unix \
  && rm -rf /var/lib/apt/lists/*
 
 # 📂 Set working directory
@@ -42,9 +42,10 @@ FROM base AS prod
 # 📂 Copy application code
 COPY . .
 
-# 🗝️ Copy entrypoint and set permissions
+# 🗝️ Copy entrypoint, normalize line endings, and set permissions
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN dos2unix /entrypoint.sh \
+ && chmod +x /entrypoint.sh
 
 # 🚀 Run entrypoint on container start
 ENTRYPOINT ["/entrypoint.sh"]
